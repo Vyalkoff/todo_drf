@@ -9,6 +9,8 @@ class Project(models.Model):
     url_address = models.URLField(max_length=200)
     user = models.ManyToManyField(Users)
 
+    def __str__(self):
+        return self.name
 
 class Todo(models.Model):
     project = models.ForeignKey(Project, models.PROTECT)
@@ -17,3 +19,6 @@ class Todo(models.Model):
     update_at = models.DateTimeField(auto_now=True)
     user = models.ForeignKey(Users, models.PROTECT)
     is_active = models.BooleanField(default=True)
+
+    def __str__(self):
+        return self.project
