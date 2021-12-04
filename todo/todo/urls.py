@@ -18,9 +18,12 @@ from django.urls import path, include
 from rest_framework.routers import DefaultRouter
 
 from users.views import UsersModelViewSet
+from project.views import ProjectModelViewSet,TodoModelViewSet
 
 router = DefaultRouter()
 router.register('users', UsersModelViewSet)
+router.register('project', ProjectModelViewSet)
+router.register('todo', TodoModelViewSet)
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('api-auth/', include('rest_framework.urls')),
