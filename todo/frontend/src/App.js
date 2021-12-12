@@ -1,13 +1,18 @@
 import './App.css';
 import React from "react";
 import axios from "axios";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {BrowserRouter, Route, Routes,} from "react-router-dom";
+
 import UsersList from "./components/Users";
 import ProjectList from "./components/Project";
 import Navbar from './components/Menu';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import Footer from "./components/footer";
 import TodoList from "./components/Todo";
+import NotFound from "./components/notFound";
+
+
+
 
 class App extends React.Component {
     constructor(props) {
@@ -62,12 +67,15 @@ class App extends React.Component {
 
 
                         <Routes>
-                            <Route exact path='/' element = {<div>Это главная Щелкаем меню</div>}/>
-                            <Route exact path='/users' element = {<UsersList users={this.state.users}/>}/>
-                            <Route exact path='/project' element = {<ProjectList projects={this.state.projects}/>}/>
-                            <Route exact path='/todo' element = {<TodoList todos={this.state.todos}/>}/>
+                            <Route path='/' element = {<div>Это главная Щелкаем меню</div>}/>
+                            <Route path='/users' element = {<UsersList users={this.state.users}/>}/>
+                            <Route path='/project' element = {<ProjectList projects={this.state.projects}/>}/>
+                            <Route path='/todo' element = {<TodoList todos={this.state.todos}/>}/>
 
+                            <Route path="*" element={<NotFound/>}/>
                         </Routes>
+
+
                     </BrowserRouter>
 
 

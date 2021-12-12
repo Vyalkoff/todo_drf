@@ -7,7 +7,7 @@ const TodoItem = ({todo}) => {
             <td>{todo.project}</td>
             <td>{todo.text}</td>
             <td>{todo.user}</td>
-            <td>{todo.is_active}</td>
+            <td>{String(todo.is_active)}</td>
         </tr>
     )
 }
