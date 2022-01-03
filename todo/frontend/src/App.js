@@ -1,7 +1,7 @@
 import './App.css';
 import React from "react";
 import axios from "axios";
-import {BrowserRouter, Route, Routes,} from "react-router-dom";
+import {BrowserRouter, Route, Routes,useParams,Outlet} from "react-router-dom";
 
 import UsersList from "./components/Users";
 import ProjectList from "./components/Project";
@@ -10,8 +10,7 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import Footer from "./components/footer";
 import TodoList from "./components/Todo";
 import NotFound from "./components/notFound";
-
-
+import SProjectList from "./components/single_project";
 
 
 class App extends React.Component {
@@ -19,8 +18,8 @@ class App extends React.Component {
         super(props)
         this.state = {
             'users': [],
-            'projects':[],
-            'todos' : [],
+            'projects': [],
+            'todos': [],
         }
     }
 
@@ -63,20 +62,22 @@ class App extends React.Component {
 
             <div>
                 <BrowserRouter>
-                <Navbar/>
+                    <Navbar/>
 
 
-                        <Routes>
-                            <Route path='/' element = {<div>Это главная Щелкаем меню</div>}/>
-                            <Route path='/users' element = {<UsersList users={this.state.users}/>}/>
-                            <Route path='/project' element = {<ProjectList projects={this.state.projects}/>}/>
-                            <Route path='/todo' element = {<TodoList todos={this.state.todos}/>}/>
+                    <Routes>
+                        <Route path='/' element={<div>Это главная Щелкаем меню</div>}/>
+                        <Route path='/users' element={<UsersList users={this.state.users}/>}/>
+                        <Route path='/project' element={<ProjectList projects={this.state.projects}/>}>
+                            <Route path=':id' element={<SProjectList projects = {this.state.projects} users = {this.state.users}/>}/>
+                        </Route>
+                        <Route path='/todo' element={<TodoList todos={this.state.todos}/>}/>
 
-                            <Route path="*" element={<NotFound/>}/>
-                        </Routes>
+                        <Route path="*" element={<NotFound/>}/>
+                    </Routes>
 
 
-                    </BrowserRouter>
+                </BrowserRouter>
 
 
                 <Footer/>

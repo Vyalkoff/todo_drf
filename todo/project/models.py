@@ -12,6 +12,7 @@ class Project(models.Model):
     def __str__(self):
         return self.name
 
+
 class Todo(models.Model):
     project = models.ForeignKey(Project, models.PROTECT)
     text = models.TextField()
@@ -21,4 +22,4 @@ class Todo(models.Model):
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
-        return self.project
+        return self.user
